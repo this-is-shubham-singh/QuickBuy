@@ -23,6 +23,7 @@ code {
 body {
   background-color: var(--background-color);
   color: var(--font-color);
+  padding: 1rem 6rem;
 }
 
 /* Navbar.css */
@@ -30,7 +31,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1rem 0rem;
   background-color: var(--background-color);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
@@ -109,5 +110,69 @@ body {
 
   .navbar-icons {
     align-self: flex-end;
+  }
+}
+
+/* HeroSection.css */
+.hero-section {
+  border: 2px solid var(--border-color);
+  margin: 2rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  min-height: 600px;
+}
+
+.hero-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--font-color);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-image-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+  }
+
+  .hero-image {
+    height: 200px;
+  }
+
+  .hero-section {
+    height: auto;
   }
 }
