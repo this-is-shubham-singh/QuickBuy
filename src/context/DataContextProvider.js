@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import { products } from "../assets/frontend_assets/assets";
+import { BiCurrentLocation } from "react-icons/bi";
 
 // pure syntax
 
@@ -8,7 +9,8 @@ export const DataContext = createContext();
 
 // provider function create
 export const DataContextProvider = ({ children }) => {
-  const value = { products };
+  const currency = "$";
+  const value = { products, currency };
 
   // provide value to through context provider
   // and keep children in middle

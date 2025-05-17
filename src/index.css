@@ -176,3 +176,55 @@ body {
     height: auto;
   }
 }
+
+/* *********************  */
+/* LatestCollection.css */
+
+.latest-collection-section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.latest-collection-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.latest-collection-description {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  font-size: 1rem;
+  color: var(--font-color);
+}
+
+.latest-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.collection-card {
+}
+
+.collection-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.collection-card-name {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--font-color);
+  text-align: left;
+}
+
+.collection-card-price {
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
+  color: var(--font-color);
+  text-align: left;
+}

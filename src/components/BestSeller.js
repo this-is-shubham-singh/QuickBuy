@@ -1,21 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
-import { DataContext } from "../context/DataContextProvider";
+import React, { useContext, useState } from "react";
 import ProductsItem from "./ProductsItem";
+import { DataContext } from "../context/DataContextProvider";
 
-const LatestCollection = () => {
+const BestSeller = () => {
   const data = useContext(DataContext);
   const [values, setValues] = useState([]);
 
-  useEffect(() => {
-    setValues(data.products.slice(0, 10));
+  useState(() => {
+    const arr = data.products.filter((value, index) => {
+      return value.bestseller == true;
+    });
+
+    setValues(arr);
   }, []);
 
-  // console.log(values)
+  //   console.log(data.products);
+
   return (
     <section className="latest-collection-section">
-      <h2 className="latest-collection-title">Latest Collection</h2>
+      <h2 className="latest-collection-title">BEST SELLERS</h2>
       <p className="latest-collection-description">
-        Discover our new arrivals — from bold styles to classic pieces, find
+        Discover our Best Collections — from bold styles to classic pieces, find
         your perfect look with our curated latest collection.
       </p>
 
@@ -34,4 +39,4 @@ const LatestCollection = () => {
   );
 };
 
-export default LatestCollection;
+export default BestSeller;
