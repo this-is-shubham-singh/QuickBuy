@@ -11,7 +11,7 @@ const BestSeller = () => {
       return value.bestseller == true;
     });
 
-    setValues(arr);
+    setValues(arr.slice(0,5));
   }, []);
 
   //   console.log(data.products);
