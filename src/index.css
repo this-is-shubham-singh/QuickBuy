@@ -318,7 +318,6 @@ body {
 
 /* Footer.css */
 
-
 .footer-section {
   background-color: var(--background-color);
   color: var(--font-color);
@@ -378,4 +377,117 @@ body {
 
 .footer-bottom-text {
   color: var(--light-font-color);
+}
+
+/* CollectionsPage.css */
+
+.collections-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.collections-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.collections-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Sidebar filters */
+.filters-sidebar {
+  flex: 1 1 220px;
+  min-width: 220px;
+}
+
+.filters-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.filter-group {
+  margin-bottom: 2rem;
+}
+
+.filter-subheading {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  color: var(--light-font-color);
+}
+
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Main content */
+.products-main {
+  flex: 3 1 700px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.products-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sort-label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.sort-select {
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--light-font-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Products container placeholder */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .collections-content {
+    flex-direction: column;
+  }
+
+  .filters-sidebar,
+  .products-main {
+    min-width: 100%;
+    flex: none;
+  }
+
+  .products-topbar {
+    justify-content: center;
+  }
 }
