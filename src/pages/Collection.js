@@ -5,7 +5,8 @@ import ProductsItem from "../components/ProductsItem";
 import Searchbar from "../components/Searchbar";
 
 const CollectionsPage = () => {
-  const { products } = useContext(DataContext);
+  const { products, showSearchBar, searchData, setSearchData } =
+    useContext(DataContext);
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [types, setTypes] = useState([]);
@@ -45,7 +46,7 @@ const CollectionsPage = () => {
   function handleSortBy(e) {
     const selectedValue = e.target.value;
 
-    const copyData = [...products];
+    const copyData = [...data];
 
     if (selectedValue == "low-high") {
       copyData.sort((a, b) => a.price - b.price);
@@ -86,11 +87,23 @@ const CollectionsPage = () => {
     filterData();
   }, [categories, types]);
 
+  useEffect(() => {
+    let copyData = [...products];
+
+    copyData = copyData.filter((value, index) => {
+      return value.name.toLowerCase().includes(searchData.toLowerCase());
+    });
+
+    // console.log(copyData);
+
+    setData(copyData);
+  }, [searchData]);
+
   // console.log(data);
 
   return (
     <section className="collections-page">
-      <Searchbar />
+      {showSearchBar ? <Searchbar /> : ""}
 
       <h1 className="collections-title">ALL COLLECTIONS</h1>
       <div className="collections-content">

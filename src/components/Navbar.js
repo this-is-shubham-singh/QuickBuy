@@ -1,9 +1,12 @@
 // Navbar.jsx
-import React from "react";
+import React, { useContext } from "react";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import { DataContext } from "../context/DataContextProvider";
 
 const Navbar = () => {
+  const { setShowSearchBar } = useContext(DataContext);
+
   return (
     <nav className="navbar">
       <Link to={"/"} className="navbar-logo">
@@ -33,7 +36,10 @@ const Navbar = () => {
       </ul>
       <div className="navbar-icons">
         <Link to={"./collection"}>
-          <FaSearch className="navbar-icon" />
+          <FaSearch
+            className="navbar-icon"
+            onClick={() => setShowSearchBar(true)}
+          />
         </Link>
         <FaUser className="navbar-icon" />
         <div className="navbar-cart-wrapper">
