@@ -491,3 +491,28 @@ body {
     justify-content: center;
   }
 }
+
+.collections-search-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.collections-search-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  flex-grow: 1;
+}
+
+.collections-clear-icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--font-color);
+}

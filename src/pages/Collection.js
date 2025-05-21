@@ -1,12 +1,97 @@
 // CollectionsPage.jsx
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContextProvider";
+import ProductsItem from "../components/ProductsItem";
+import Searchbar from "../components/Searchbar";
 
 const CollectionsPage = () => {
-  // const { products } = useContext(DataContext);
+  const { products } = useContext(DataContext);
+  const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [types, setTypes] = useState([]);
+
+  useEffect(() => {
+    setData(products);
+  }, []);
+
+  function handleCategoryCheck(e) {
+    const checkedValue = e.target.value;
+
+    if (categories.includes(checkedValue)) {
+      const updatedCategories = categories.filter((val, index) => {
+        return val != checkedValue;
+      });
+
+      setCategories(updatedCategories);
+    } else {
+      setCategories((value) => [...value, checkedValue]);
+    }
+  }
+
+  function handleTypeCheck(e) {
+    const checkedValue = e.target.value;
+
+    if (types.includes(checkedValue)) {
+      const updatedTypes = types.filter((val, index) => {
+        return val != checkedValue;
+      });
+
+      setTypes(updatedTypes);
+    } else {
+      setTypes((value) => [...value, checkedValue]);
+    }
+  }
+
+  function handleSortBy(e) {
+    const selectedValue = e.target.value;
+
+    const copyData = [...products];
+
+    if (selectedValue == "low-high") {
+      copyData.sort((a, b) => a.price - b.price);
+    } else if (selectedValue == "high-low") {
+      copyData.sort((a, b) => b.price - a.price);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      console.log("copy data", copyData[i].price);
+    }
+
+    setData(copyData);
+  }
+
+  function filterData() {
+    let copyData = [...products];
+
+    if (categories.length != 0) {
+      copyData = copyData.filter((val, index) => {
+        return categories.includes(val.category);
+      });
+    }
+
+    if (types.length != 0) {
+      copyData = copyData.filter((val, index) => {
+        return types.includes(val.subCategory);
+      });
+    }
+
+    setData(copyData);
+  }
+
+  useEffect(() => {
+    if (data.length == 0) {
+      return;
+    }
+
+    filterData();
+  }, [categories, types]);
+
+  // console.log(data);
 
   return (
     <section className="collections-page">
+      <Searchbar />
+
       <h1 className="collections-title">ALL COLLECTIONS</h1>
       <div className="collections-content">
         <aside className="filters-sidebar">
@@ -15,15 +100,30 @@ const CollectionsPage = () => {
           <div className="filter-group">
             <h3 className="filter-subheading">Categories</h3>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Men"
+                onChange={handleCategoryCheck}
+              />
               Men
             </label>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Women"
+                onChange={handleCategoryCheck}
+              />
               Women
             </label>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Kids"
+                onChange={handleCategoryCheck}
+              />
               Kids
             </label>
           </div>
@@ -31,15 +131,30 @@ const CollectionsPage = () => {
           <div className="filter-group">
             <h3 className="filter-subheading">Type</h3>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Topwear"
+                onChange={handleTypeCheck}
+              />
               Topwear
             </label>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Bottomwear"
+                onChange={handleTypeCheck}
+              />
               Bottomwear
             </label>
             <label className="filter-label">
-              <input type="checkbox" className="filter-checkbox" />
+              <input
+                type="checkbox"
+                className="filter-checkbox"
+                value="Winterwear"
+                onChange={handleTypeCheck}
+              />
               Winterwear
             </label>
           </div>
@@ -50,14 +165,26 @@ const CollectionsPage = () => {
             <label htmlFor="sort-select" className="sort-label">
               Sort by:
             </label>
-            <select id="sort-select" className="sort-select">
+            <select className="sort-select" onChange={handleSortBy}>
               <option value="relevant">Relevant</option>
               <option value="low-high">Price: Low to High</option>
               <option value="high-low">Price: High to Low</option>
             </select>
           </div>
 
-          <div className="products-container">{}</div>
+          <div className="products-container">
+            {data.map((val, ind) => {
+              return (
+                <ProductsItem
+                  key={ind}
+                  image={val.image}
+                  name={val.name}
+                  price={val.price}
+                  id={val._id}
+                />
+              );
+            })}
+          </div>
         </main>
       </div>
     </section>
