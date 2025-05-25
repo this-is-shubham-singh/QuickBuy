@@ -1,37 +1,51 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContextProvider";
 import { useParams } from "react-router-dom";
-import RelatedProducts from "../components/RelatedProducts"
+import RelatedProducts from "../components/RelatedProducts";
+import { toast } from "react-toastify";
 
 const Product = () => {
-  const { products, currency } = useContext(DataContext);
+  const { products, currency, add_to_cart } = useContext(DataContext);
   const [product_data, set_product_data] = useState(null);
   const { productid } = useParams();
+  const [size, set_size] = useState("");
 
   useEffect(() => {
     if (!products || products.length === 0) {
       return;
     }
 
-    console.log("inside useffect", products.length);
-
     const current_product = products.find((value) => {
       return value._id === productid;
     });
 
-    console.log("found data", current_product);
     set_product_data(current_product);
   }, [products, productid]);
 
-  // console.log(product_data.sizes);
+  function handle_add_to_cart() {
+    if (size == "") {
+      toast.error("select a size");
+      return;
+    }
+
+    toast("🛒 Item added to cart!");
+  }
+
+  function handle_size_select(value) {
+    set_size(value);
+  }
+
+  console.log(product_data);
 
   return product_data ? (
     <div className="product-page">
       <div className="product-images-section">
         <div className="thumbnail-images">
-          <img src="img1.jpg" alt="thumb1" className="thumbnail" />
-          <img src="img2.jpg" alt="thumb2" className="thumbnail" />
-          <img src="img3.jpg" alt="thumb3" className="thumbnail" />
+          {product_data?.image?.map((val, index) => {
+            return (
+              <img src={val} alt="thumb1" className="thumbnail" key={index} />
+            );
+          })}
         </div>
         <div className="main-image">
           <img src={product_data?.image[0]} alt="product" />
@@ -57,14 +71,25 @@ const Product = () => {
         <div className="size-options">
           {product_data?.sizes?.map((value, index) => {
             return (
-              <span className="size-box" key={index}>
+              <span
+                className={`size-box ${
+                  value == size ? "size_select_border" : ""
+                }`}
+                key={index}
+                onClick={() => handle_size_select(value)}
+              >
                 {value}
               </span>
             );
           })}
         </div>
 
-        <button className="add-to-cart-btn">Add to Cart</button>
+        <button
+          className="add-to-cart-btn"
+          onClick={() => handle_add_to_cart()}
+        >
+          Add to Cart
+        </button>
 
         <div className="product-notes">
           <p>100% Original product.</p>
@@ -100,7 +125,10 @@ const Product = () => {
         </div>
       </div>
 
-      <RelatedProducts category={product_data.category} subCategory={product_data.subCategory}/>
+      <RelatedProducts
+        category={product_data.category}
+        subCategory={product_data.subCategory}
+      />
     </div>
   ) : (
     <div>...loading</div>

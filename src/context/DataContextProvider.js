@@ -8,6 +8,24 @@ export const DataContextProvider = ({ children }) => {
 
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchData, setSearchData] = useState("");
+  const [cart_data, set_cart_data] = useState({});
+
+  function add_to_cart(id, size, quantity = 1) {
+    const copy_obj = structuredClone(cart_data);
+
+    if (copy_obj[id]) {
+      if (copy_obj[id][size]) {
+        copy_obj[id][size] = copy_obj[id][size] += quantity;
+      } else {
+        copy_obj[id][size] = quantity;
+      }
+    } else {
+      copy_obj[id] = {};
+      copy_obj[id][size] = quantity;
+    }
+
+    set_cart_data(copy_obj);
+  }
 
   const value = {
     products,
@@ -16,6 +34,7 @@ export const DataContextProvider = ({ children }) => {
     setShowSearchBar,
     searchData,
     setSearchData,
+    add_to_cart,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

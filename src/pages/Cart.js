@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../context/DataContextProvider";
 
 const Cart = () => {
+  
+
   return (
     <div className="cartpage-container">
       <h2 className="cartpage-heading">Your Cart</h2>
