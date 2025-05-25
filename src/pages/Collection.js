@@ -88,7 +88,10 @@ const CollectionsPage = () => {
   }, [categories, types]);
 
   useEffect(() => {
-    let copyData = [...products];
+    let copyData = [... products];
+    if (copyData.length == 0) {
+      return;
+    }
 
     copyData = copyData.filter((value, index) => {
       return value.name.toLowerCase().includes(searchData.toLowerCase());
@@ -99,7 +102,7 @@ const CollectionsPage = () => {
     setData(copyData);
   }, [searchData]);
 
-  // console.log(data);
+  console.log(data);
 
   return (
     <section className="collections-page">
