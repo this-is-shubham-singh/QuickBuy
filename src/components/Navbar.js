@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
 
 const Navbar = () => {
-  const { setShowSearchBar } = useContext(DataContext);
+  const { setShowSearchBar, count_cart_products } = useContext(DataContext);
 
   return (
     <nav className="navbar">
@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className="navbar-cart-wrapper">
           <Link to={"/cart"}>
             <FaShoppingCart className="navbar-icon" />
-            <span className="navbar-cart-count">2</span>
+            <span className="navbar-cart-count">{count_cart_products()}</span>
           </Link>
         </div>
       </div>

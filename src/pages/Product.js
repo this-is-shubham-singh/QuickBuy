@@ -5,7 +5,8 @@ import RelatedProducts from "../components/RelatedProducts";
 import { toast } from "react-toastify";
 
 const Product = () => {
-  const { products, currency, add_to_cart } = useContext(DataContext);
+  const { products, currency, add_to_cart, cart_data } =
+    useContext(DataContext);
   const [product_data, set_product_data] = useState(null);
   const { productid } = useParams();
   const [size, set_size] = useState("");
@@ -28,14 +29,17 @@ const Product = () => {
       return;
     }
 
-    toast("🛒 Item added to cart!");
+    add_to_cart(product_data._id, size);
+    // toast("🛒 Item added to cart!");
   }
 
   function handle_size_select(value) {
-    set_size(value);
+    if (value == size) {
+      set_size("");
+    } else {
+      set_size(value);
+    }
   }
-
-  console.log(product_data);
 
   return product_data ? (
     <div className="product-page">

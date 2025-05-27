@@ -102,7 +102,7 @@ const CollectionsPage = () => {
     setData(copyData);
   }, [searchData]);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <section className="collections-page">
