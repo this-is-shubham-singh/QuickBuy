@@ -11,6 +11,8 @@ const Product = () => {
   const { productid } = useParams();
   const [size, set_size] = useState("");
 
+
+  // finding product data from recieved id 
   useEffect(() => {
     if (!products || products.length === 0) {
       return;
@@ -23,7 +25,7 @@ const Product = () => {
     set_product_data(current_product);
   }, [products, productid]);
 
-  function handle_add_to_cart() {
+  function handle_add_to_cart(price) {
     if (size == "") {
       toast.error("select a size");
       return;
@@ -40,6 +42,8 @@ const Product = () => {
       set_size(value);
     }
   }
+
+  console.log(product_data);
 
   return product_data ? (
     <div className="product-page">
@@ -90,7 +94,7 @@ const Product = () => {
 
         <button
           className="add-to-cart-btn"
-          onClick={() => handle_add_to_cart()}
+          onClick={() => handle_add_to_cart(product_data.price)}
         >
           Add to Cart
         </button>

@@ -5,6 +5,7 @@ export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const currency = "$";
+  const delivery_charges = 100;
 
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchData, setSearchData] = useState("");
@@ -82,8 +83,10 @@ export const DataContextProvider = ({ children }) => {
     cart_data,
     add_to_cart,
     count_cart_products,
+    cart_data,
     cart_products,
     update_quantity,
+    delivery_charges,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

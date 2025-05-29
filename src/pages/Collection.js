@@ -87,8 +87,10 @@ const CollectionsPage = () => {
     filterData();
   }, [categories, types]);
 
+
+  // search functionality 
   useEffect(() => {
-    let copyData = [... products];
+    let copyData = [...products];
     if (copyData.length == 0) {
       return;
     }
@@ -96,8 +98,6 @@ const CollectionsPage = () => {
     copyData = copyData.filter((value, index) => {
       return value.name.toLowerCase().includes(searchData.toLowerCase());
     });
-
-    // console.log(copyData);
 
     setData(copyData);
   }, [searchData]);

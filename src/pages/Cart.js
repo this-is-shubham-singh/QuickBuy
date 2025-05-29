@@ -2,11 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContextProvider";
 
 const Cart = () => {
-  const { cart_products, products, update_quantity } = useContext(DataContext);
+  const {
+    cart_products,
+    cart_data,
+    products,
+    update_quantity,
+    currency,
+    delivery_charges,
+  } = useContext(DataContext);
 
-  console.log("cart_product", cart_products);
+  function handle_onchange(e, id, size) {
+    update_quantity(id, size, Number(e.target.value));
+  }
 
-  function handle_onchange(e) {}
+  let total_price = 0;
 
   return (
     <div className="cartpage-container">
@@ -16,6 +25,8 @@ const Cart = () => {
         const current_cart_item = products.find((product_value, ind) => {
           return product_value._id == cart_product_value._id;
         });
+
+        total_price += current_cart_item.price * cart_product_value.quantity;
 
         return (
           <div key={index} className="cartpage-item-box">
@@ -32,7 +43,8 @@ const Cart = () => {
                 </h3>
                 <div className="cartpage-item-meta">
                   <span className="cartpage-price">
-                    ${current_cart_item.price}
+                    {currency}
+                    {current_cart_item.price}
                   </span>
                   <span className="cartpage-size">
                     Size: {cart_product_value.size}
@@ -73,6 +85,32 @@ const Cart = () => {
           </div>
         );
       })}
+      <div className="cart-total-section">
+        <h2 className="cart-total-heading">CART TOTAL</h2>
+
+        <div className="cart-total-row">
+          <span>Subtotal</span>
+          <span>
+            {currency}
+            {total_price}
+          </span>
+        </div>
+
+        <div className="cart-total-row">
+          <span>Shipping Fee</span>
+          <span>
+            {currency}
+            {delivery_charges}
+          </span>
+        </div>
+
+        <div className="cart-total-row total-amount">
+          <span>Total</span>
+          <span>{currency}{total_price + delivery_charges}</span>
+        </div>
+
+        <button className="checkout-button">PROCEED TO CHECKOUT</button>
+      </div>
     </div>
   );
 };
