@@ -11,6 +11,7 @@ export const DataContextProvider = ({ children }) => {
   const [searchData, setSearchData] = useState("");
   const [cart_data, set_cart_data] = useState({});
   const [cart_products, set_card_products] = useState([]);
+  const [current_total_price, set_current_total_price] = useState(0);
 
   // setting cart products to an array
   useEffect(() => {
@@ -87,6 +88,8 @@ export const DataContextProvider = ({ children }) => {
     cart_products,
     update_quantity,
     delivery_charges,
+    current_total_price,
+    set_current_total_price,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

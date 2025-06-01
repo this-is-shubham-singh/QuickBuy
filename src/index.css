@@ -857,3 +857,82 @@ body {
   cursor: pointer;
   margin-top: 1.5rem;
 }
+.cart-total-payment-method {
+  margin: 2rem 0;
+}
+
+.payment-method-heading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.payment-options-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.payment-option-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border-color);
+  padding: 0.3rem 1rem;
+  border-radius: 6px;
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.payment-option-box img {
+  width: 40px;
+  height: auto;
+}
+
+/* ******* place order ********  */
+.delivery-info-page {
+  padding: 2rem;
+}
+
+.delivery-heading {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.delivery-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.delivery-form {
+  flex: 0.8;
+  min-width: 300px;
+  margin-top: 40px;
+}
+
+.delivery-cart-total-placeholder {
+  flex: 1;
+  min-width: 300px;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-half {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-full {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
