@@ -17,6 +17,7 @@ export const DataContextProvider = ({ children }) => {
     return currTheme;
   }
   const [theme, setTheme] = useState(getCurrentTheme);
+  const [toggleNavbar, setToggleNavbar] = useState(true);
 
   const toggleTheme = () => {
     setTheme((currTheme) => (currTheme == "dark" ? "light" : "dark"));
@@ -106,6 +107,8 @@ export const DataContextProvider = ({ children }) => {
     set_current_total_price,
     theme,
     toggleTheme,
+    toggleNavbar, 
+    setToggleNavbar
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

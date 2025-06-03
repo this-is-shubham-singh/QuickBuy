@@ -6,6 +6,7 @@ import {
   FaShoppingCart,
   FaSun,
   FaMoon,
+  FaBars,
 } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
@@ -15,6 +16,7 @@ const Navbar = () => {
     useContext(DataContext);
   const [openDropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
+  const [showbottom, setShowBottom] = useState(false);
 
   function handleOrderClick() {
     navigate("/orders");
@@ -28,10 +30,24 @@ const Navbar = () => {
 
   return (
     <nav className="navbar web-navbar">
-      <Link to={"/"} className="navbar-logo">
-        QuickBuy
-      </Link>
-      <ul className="navbar-links">
+      <div className="mobile-nav-top">
+        <Link to={"/"} className="navbar-logo">
+          QuickBuy
+        </Link>
+
+        <div
+          className="navbar-icons burger-icon"
+          onClick={() => setShowBottom(!showbottom)}
+        >
+          <FaBars style={{ fontSize: "1.5rem" }} className="navbar-icon" />
+        </div>
+      </div>
+
+      <ul
+        className={`navbar-links navbar-mobile-bottom ${
+          showbottom ? "show-bottom-navbar" : ""
+        }`}
+      >
         <li className="navbar-link-item">
           <NavLink className="navbar-link" to={"/"}>
             Home
@@ -53,7 +69,11 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <div className="navbar-icons">
+      <div
+        className={`navbar-links navbar-mobile-bottom ${
+          showbottom ? "show-bottom-navbar fl-direction-row" : ""
+        }`}
+      >
         <div>
           {theme == "dark" ? (
             <FaSun className="navbar-icon" onClick={() => toggleTheme()} />

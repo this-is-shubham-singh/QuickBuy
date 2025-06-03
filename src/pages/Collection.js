@@ -130,7 +130,7 @@ const CollectionsPage = () => {
           setData((current_data) => [...current_data, ...data]);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 1 }
     );
 
     if (lastchild.current) {

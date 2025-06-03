@@ -14,14 +14,12 @@ import About from "./pages/About";
 import Footer from "./components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import MobileNav from "./components/MobileNav";
 
 const App = () => {
   return (
     <div>
       <ToastContainer />
-      {/* <Navbar /> */}
-      <MobileNav />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
