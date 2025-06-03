@@ -10,6 +10,9 @@ const CollectionsPage = () => {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [types, setTypes] = useState([]);
+  const [loading, setloading] = useState(false);
+  const controller = new AbortController();
+  const signal = controller.signal;
 
   useEffect(() => {
     setData(products);
@@ -87,9 +90,9 @@ const CollectionsPage = () => {
     filterData();
   }, [categories, types]);
 
+  // search functionality
 
-  // search functionality 
-  useEffect(() => {
+  function search_input_data() {
     let copyData = [...products];
     if (copyData.length == 0) {
       return;
@@ -100,6 +103,20 @@ const CollectionsPage = () => {
     });
 
     setData(copyData);
+  }
+
+  useEffect(() => {
+    setloading(true);
+
+    const timer = setTimeout(() => {
+      search_input_data();
+      setloading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
   }, [searchData]);
 
   // console.log(data);
@@ -188,19 +205,23 @@ const CollectionsPage = () => {
             </select>
           </div>
 
-          <div className="products-container">
-            {data.map((val, ind) => {
-              return (
-                <ProductsItem
-                  key={ind}
-                  image={val.image[0]}
-                  name={val.name}
-                  price={val.price}
-                  id={val._id}
-                />
-              );
-            })}
-          </div>
+          {loading ? (
+            "...loading"
+          ) : (
+            <div className="products-container">
+              {data.map((val, ind) => {
+                return (
+                  <ProductsItem
+                    key={ind}
+                    image={val.image[0]}
+                    name={val.name}
+                    price={val.price}
+                    id={val._id}
+                  />
+                );
+              })}
+            </div>
+          )}
         </main>
       </div>
     </section>
