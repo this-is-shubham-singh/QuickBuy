@@ -1,5 +1,5 @@
 // CollectionsPage.jsx
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../context/DataContextProvider";
 import ProductsItem from "../components/ProductsItem";
 import Searchbar from "../components/Searchbar";
@@ -13,6 +13,7 @@ const CollectionsPage = () => {
   const [loading, setloading] = useState(false);
   const controller = new AbortController();
   const signal = controller.signal;
+  const lastchild = useRef(null);
 
   useEffect(() => {
     setData(products);
@@ -91,7 +92,6 @@ const CollectionsPage = () => {
   }, [categories, types]);
 
   // search functionality
-
   function search_input_data() {
     let copyData = [...products];
     if (copyData.length == 0) {
@@ -105,6 +105,7 @@ const CollectionsPage = () => {
     setData(copyData);
   }
 
+  // debouncing
   useEffect(() => {
     setloading(true);
 
@@ -119,6 +120,30 @@ const CollectionsPage = () => {
     };
   }, [searchData]);
 
+  // infinite scrolling
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (param) => {
+        if (param[0].isIntersecting) {
+          observer.unobserve(lastchild.current);
+
+          setData((current_data) => [...current_data, ...data]);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (lastchild.current) {
+      observer.observe(lastchild.current);
+    }
+
+    return () => {
+      if (lastchild.current) {
+        observer.unobserve(lastchild.current);
+        observer.disconnect();
+      }
+    };
+  }, [data]);
   // console.log(data);
 
   return (
@@ -217,6 +242,8 @@ const CollectionsPage = () => {
                     name={val.name}
                     price={val.price}
                     id={val._id}
+                    ref={ind == data.length - 1 ? lastchild : null}
+                    className="products-list"
                   />
                 );
               })}
