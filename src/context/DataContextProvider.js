@@ -12,6 +12,20 @@ export const DataContextProvider = ({ children }) => {
   const [cart_data, set_cart_data] = useState({});
   const [cart_products, set_card_products] = useState([]);
   const [current_total_price, set_current_total_price] = useState(0);
+  function getCurrentTheme() {
+    const currTheme = localStorage.getItem("theme") || "dark";
+    return currTheme;
+  }
+  const [theme, setTheme] = useState(getCurrentTheme);
+
+  const toggleTheme = () => {
+    setTheme((currTheme) => (currTheme == "dark" ? "light" : "dark"));
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // setting cart products to an array
   useEffect(() => {
@@ -90,6 +104,8 @@ export const DataContextProvider = ({ children }) => {
     delivery_charges,
     current_total_price,
     set_current_total_price,
+    theme,
+    toggleTheme,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

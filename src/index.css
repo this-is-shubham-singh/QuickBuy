@@ -12,8 +12,6 @@ code {
     monospace;
 }
 
-/* "data-theme" is the attribute which is set to light or dark */
-
 :root {
   --font-color: white;
   --background-color: #1c1c1e;
@@ -21,10 +19,23 @@ code {
   --light-font-color: #ccc;
 }
 
+[data-theme="light"] {
+  --font-color: black;
+  --background-color: white;
+  --border-color: rgb(54, 54, 54);
+  --light-font-color: gray;
+}
+
 body {
   background-color: var(--background-color);
   color: var(--font-color);
   padding: 1rem 6rem;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem 2rem;
+  }
 }
 
 /* Navbar.css */
@@ -96,11 +107,20 @@ body {
   border-radius: 50%;
 }
 
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .web-navbar {
+    display: none;
+  }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
+    width: 100%;
   }
 
   .navbar-links {
@@ -112,7 +132,13 @@ body {
   .navbar-icons {
     align-self: flex-end;
   }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: row;
+  }
 }
+
 .navbar-icon-wrapper {
   position: relative;
   display: inline-block;
@@ -136,7 +162,6 @@ body {
 .navbar-icon-wrapper:hover .navbar-user-dropdown {
   display: block;
 }
-
 
 .dropdown-item {
   padding: 0.5rem 1rem;
@@ -216,7 +241,7 @@ body {
 /* LatestCollection.css */
 
 .latest-collection-section {
-  padding: 3rem 2rem;
+  padding: 3rem 1rem;
   text-align: center;
   width: 100%;
 }
@@ -1118,7 +1143,6 @@ body {
   }
 }
 
-
 /* ******* login page ************  */
 .login-page {
   display: flex;
@@ -1166,6 +1190,5 @@ body {
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
-  border-color    : var(--border-color);
+  border-color: var(--border-color);
 }
-
