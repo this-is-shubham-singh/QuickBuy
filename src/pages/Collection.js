@@ -193,7 +193,7 @@ const CollectionsPage = () => {
               return (
                 <ProductsItem
                   key={ind}
-                  image={val.image}
+                  image={val.image[0]}
                   name={val.name}
                   price={val.price}
                   id={val._id}

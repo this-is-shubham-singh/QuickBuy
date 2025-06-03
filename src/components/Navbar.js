@@ -1,11 +1,23 @@
 // Navbar.jsx
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
 
 const Navbar = () => {
   const { setShowSearchBar, count_cart_products } = useContext(DataContext);
+  const [openDropDown, setDropDown] = useState(false);
+  const navigate = useNavigate();
+
+  function handleOrderClick() {
+    navigate("/orders");
+    setDropDown(!openDropDown);
+  }
+
+  function handleLogoutClick() {
+    navigate("/login");
+    setDropDown(!openDropDown);
+  }
 
   return (
     <nav className="navbar">
@@ -41,7 +53,21 @@ const Navbar = () => {
             onClick={() => setShowSearchBar(true)}
           />
         </Link>
-        <FaUser className="navbar-icon" />
+        <div className="navbar-icon-wrapper">
+          <FaUser
+            className="navbar-icon"
+            onClick={() => setDropDown(!openDropDown)}
+          />
+
+          <div className="navbar-user-dropdown">
+            <p className="dropdown-item" onClick={handleOrderClick}>
+              Orders
+            </p>
+            <p className="dropdown-item" onClick={handleLogoutClick}>
+              Logout
+            </p>
+          </div>
+        </div>
         <div className="navbar-cart-wrapper">
           <Link to={"/cart"}>
             <FaShoppingCart className="navbar-icon" />

@@ -45,7 +45,7 @@ const PlaceOrder = () => {
     }
 
     // setting cart products array to local storage
-    // local
+    localStorage.setItem("cart-data", JSON.stringify(cart_products));
 
     navigate("/orders");
   }
