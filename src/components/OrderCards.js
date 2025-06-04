@@ -55,18 +55,24 @@ const OrderCards = ({ index, current_cart_item, cart_product_value }) => {
           ) : (
             ""
           )}
-          <button
-            className="cartpage-delete-btn"
-            onClick={() =>
-              update_quantity(
-                cart_product_value._id,
-                cart_product_value.size,
-                0
-              )
-            }
-          >
-            Delete
-          </button>
+
+          {current_path_name != "orders" ? (
+            <button
+              className="cartpage-delete-btn"
+              onClick={() =>
+                update_quantity(
+                  cart_product_value._id,
+                  cart_product_value.size,
+                  0
+                )
+              }
+            >
+              Delete
+            </button>
+          ) : (
+            ""
+          )}
+          
         </div>
       </div>
     </div>
