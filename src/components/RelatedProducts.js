@@ -8,7 +8,7 @@ const RelatedProducts = ({ category, subCategory }) => {
 
   useState(() => {
     const arr = data.products.filter((value, index) => {
-      return value.category == category && value.subCategory == subCategory;
+      return value.category === category && value.subCategory === subCategory;
     });
 
     setValues(arr.slice(0, 5));

@@ -38,7 +38,7 @@ const CartTotal = ({ handleSubmit }) => {
         </span>
       </div>
 
-      {current_path == "placeOrder" ? (
+      {current_path === "placeOrder" ? (
         <div className="cart-total-payment-method">
           <h3 className="payment-method-heading">Payment Method</h3>
           <div className="payment-options-row">
@@ -64,7 +64,7 @@ const CartTotal = ({ handleSubmit }) => {
         ""
       )}
 
-      {current_path == "placeOrder" ? (
+      {current_path === "placeOrder" ? (
         <button
           type="submit"
           onClick={(e) => handleSubmit(e)}

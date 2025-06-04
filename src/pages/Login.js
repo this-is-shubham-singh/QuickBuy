@@ -14,7 +14,7 @@ const Login = () => {
       <h1 className="login-heading">{loginStatus ? "Login" : "Signup"}</h1>
 
       <form className="login-form" onSubmit={handleSubmit}>
-        {loginStatus == false ? (
+        {loginStatus === false ? (
           <input type="text" placeholder="Name" className="login-input" />
         ) : (
           ""

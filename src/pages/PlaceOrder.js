@@ -30,15 +30,15 @@ const PlaceOrder = () => {
   function handleSubmit(e) {
     e.preventDefault();
     if (
-      data.firstname == "" ||
-      data.lastname == "" ||
-      data.email == "" ||
-      data.street == "" ||
-      data.city == "" ||
-      data.state == "" ||
-      data.zipcode == "" ||
-      data.country == "" ||
-      data.phone == ""
+      data.firstname === "" ||
+      data.lastname === "" ||
+      data.email === "" ||
+      data.street === "" ||
+      data.city === "" ||
+      data.state === "" ||
+      data.zipcode === "" ||
+      data.country === "" ||
+      data.phone === ""
     ) {
       toast.error("fill in all the details");
       return;

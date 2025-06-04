@@ -75,7 +75,7 @@ const Navbar = () => {
         }`}
       >
         <div>
-          {theme == "dark" ? (
+          {theme === "dark" ? (
             <FaSun className="navbar-icon" onClick={() => toggleTheme()} />
           ) : (
             <FaMoon className="theme-icon" onClick={() => toggleTheme()} />

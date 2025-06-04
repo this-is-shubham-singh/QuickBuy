@@ -20,7 +20,7 @@ export const DataContextProvider = ({ children }) => {
   const [toggleNavbar, setToggleNavbar] = useState(true);
 
   const toggleTheme = () => {
-    setTheme((currTheme) => (currTheme == "dark" ? "light" : "dark"));
+    setTheme((currTheme) => (currTheme === "dark" ? "light" : "dark"));
   };
 
   useEffect(() => {

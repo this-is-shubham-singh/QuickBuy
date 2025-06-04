@@ -27,7 +27,7 @@ const OrderCards = ({ index, current_cart_item, cart_product_value }) => {
             <span className="cartpage-size">
               Size: {cart_product_value.size}
             </span>
-            {current_path_name == "orders" ? (
+            {current_path_name === "orders" ? (
               <span className="cartpage-size">
                 quantity: {cart_product_value.quantity}
               </span>

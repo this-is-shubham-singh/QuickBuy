@@ -52,9 +52,9 @@ const CollectionsPage = () => {
 
     const copyData = [...data];
 
-    if (selectedValue == "low-high") {
+    if (selectedValue === "low-high") {
       copyData.sort((a, b) => a.price - b.price);
-    } else if (selectedValue == "high-low") {
+    } else if (selectedValue === "high-low") {
       copyData.sort((a, b) => b.price - a.price);
     }
 
@@ -84,7 +84,7 @@ const CollectionsPage = () => {
   }
 
   useEffect(() => {
-    if (data.length == 0) {
+    if (data.length === 0) {
       return;
     }
 
@@ -94,7 +94,7 @@ const CollectionsPage = () => {
   // search functionality
   function search_input_data() {
     let copyData = [...products];
-    if (copyData.length == 0) {
+    if (copyData.length === 0) {
       return;
     }
 
@@ -242,7 +242,7 @@ const CollectionsPage = () => {
                     name={val.name}
                     price={val.price}
                     id={val._id}
-                    ref={ind == data.length - 1 ? lastchild : null}
+                    ref={ind === data.length - 1 ? lastchild : null}
                     className="products-list"
                   />
                 );

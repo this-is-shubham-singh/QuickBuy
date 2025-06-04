@@ -14,7 +14,7 @@ const Cart = () => {
       <h2 className="cartpage-heading">Your Cart</h2>
       {cart_products?.map((cart_product_value, index) => {
         const current_cart_item = products.find((product_value, ind) => {
-          return product_value._id == cart_product_value._id;
+          return product_value._id === cart_product_value._id;
         });
 
         total_price += current_cart_item.price * cart_product_value.quantity;

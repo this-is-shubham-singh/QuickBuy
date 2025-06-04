@@ -26,7 +26,7 @@ const Product = () => {
   }, [products, productid]);
 
   function handle_add_to_cart(price) {
-    if (size == "") {
+    if (size === "") {
       toast.error("select a size");
       return;
     }
@@ -36,7 +36,7 @@ const Product = () => {
   }
 
   function handle_size_select(value) {
-    if (value == size) {
+    if (value === size) {
       set_size("");
     } else {
       set_size(value);
@@ -81,7 +81,7 @@ const Product = () => {
             return (
               <span
                 className={`size-box ${
-                  value == size ? "size_select_border" : ""
+                  value === size ? "size_select_border" : ""
                 }`}
                 key={index}
                 onClick={() => handle_size_select(value)}

@@ -8,7 +8,7 @@ const BestSeller = () => {
 
   useState(() => {
     const arr = data.products.filter((value, index) => {
-      return value.bestseller == true;
+      return value.bestseller === true;
     });
 
     setValues(arr.slice(0,5));

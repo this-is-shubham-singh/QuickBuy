@@ -12,7 +12,7 @@ const Orders = () => {
       {cart_products != "" ? (
         cart_products?.map((cart_product_value, index) => {
           const current_cart_item = products.find((product_value, ind) => {
-            return product_value._id == cart_product_value._id;
+            return product_value._id === cart_product_value._id;
           });
 
           return (
